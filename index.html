@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --rouret-speed: 0.3s;
+        /* --rouret-speed: 0; */
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .container {
+        height: 100vh;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        justify-items: center;
+        /* gap: 2vh; */
+        position: relative;
+      }
+      .hit-marker {
+        color: #e15759;
+        font-size: 10vh;
+        position: absolute;
+        top: 12vh;
+        z-index: 2;
+      }
+      .roulette {
+        width: 50vh;
+        height: 50vh;
+        border-radius: 100%;
+        animation: rotate var(--rouret-speed) linear infinite;
+        animation-play-state: running;
+        position: relative;
+        background: radial-gradient(
+            circle closest-side,
+            transparent 100%,
+            white 0
+          ),
+          conic-gradient(
+            from calc(180deg / 10),
+            #4e79a799 0,
+            #4e79a799 90%,
+            #e1575999 0,
+            #e1575999 100%
+          );
+      }
+      .roulette:focus,
+      .roulette:focus-within,
+      .roulette:active {
+        animation-play-state: paused;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+      }
+      .labels {
+        display: grid;
+        height: 100%;
+        gap: 10vh;
+      }
+      .win-label {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .win-label-inner {
+        width: 1em;
+        display: inline-block;
+      }
+
+      .lose-label {
+        /* background-color: red; */
+        width: 100%;
+        text-align: center;
+      }
+      .lose-label-inner {
+        transform: rotate(180deg);
+        width: 1em;
+        display: inline-block;
+      }
+      .restart-button {
+        margin-top: 5vmin;
+        font-size: 3vmin;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hit-marker">▼</div>
+      <div tabindex="0" class="roulette">
+        <div class="labels">
+          <div class="win-label">
+            <div class="win-label-inner">パジェロ</div>
+          </div>
+          <div class="lose-label">
+            <div class="lose-label-inner">たわし</div>
+          </div>
+        </div>
+      </div>
+      <button class="restart-button" tabindex="1">再開</button>
+    </div>
+  </body>
+</html>
